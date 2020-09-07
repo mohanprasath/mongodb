@@ -54,3 +54,25 @@
 - By default, the above code will replace only the first document matching the filter condition
 - `deleteOne, deleteMany`: send a condition based on which a document should be deleted
 - load the movie reviews collection into the sandbox, login using `mongo MONGO_URL`, then run the command `load(JS_FILE_NAME)`
+
+## Chapter 3 Deeper Dive into MongoDB Query Language
+
+- CRUD can be operated upon using the query operators in the mongodb
+- comparison query operators: `db.movieDetails.find({runtime:{$gte: 90, $lte: 120}}, {title:1, _id:0}).count()`
+- some operators are `$gt, $gte, $lt, $lte, $ne, $in, $nin`
+- Element (values check) operators: `$exists, $type`
+- used mainly when searching for null values but the code returns even the missing field documents
+- `db.movies.find({viewerRating: {$type: "int"}}).pretty()`
+- `{atmosphericPressureChange: {$exists: false}}` - to find if the field exists or not
+- Logical operators; `$and, $not, $nor, $or`, selectors are in the following syntax.
+- `{$or: [{watlev:{$eq: 'always dry'}}, {depth: {$eq: 0} }]}`
+- `$all` - matches an array of elements and should match completely but not in the same order
+- `{sections: {$all: ["AG1", "MD1", "OA1"]}}`
+- `$size`- syntax similar to `$all`, allows you to select the results based on the counts
+- `{sections: {$size: 2}}`
+- `$elemMatch` - TODO aagin <https://youtu.be/e21qIIy9rxk>
+- `use results`
+- `db.scores.find({results: {$elemMatch: {$gte: 70, $lt: 80}}}).count()`
+- `{results: {$elemMatch: {product: "abc", score: 7}}}`
+- NOTE: the mogodb shell is a JS interpreter
+- `$regex` operator: similar to usage with `$size`
