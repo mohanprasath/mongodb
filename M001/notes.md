@@ -76,3 +76,7 @@
 - `{results: {$elemMatch: {product: "abc", score: 7}}}`
 - NOTE: the mogodb shell is a JS interpreter
 - `$regex` operator: similar to usage with `$size`
+
+## Final Exam
+
+- 6 questions
